@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 @FunctionalInterface
 interface ICalculator{
@@ -19,13 +20,13 @@ public class MathApp {
 		
 		ICalculator add = (a,b) -> a+b;
 		ICalculator subtract = (a,b) -> a-b;
-		ICalculator divide = (a,b) -> { 
-										try { 
-											return a/b;
-										}catch(ArithmeticException e) {
-											return 0;
-										}
-									};
+		ICalculator divide = (a,b) -> {
+			try { 
+				return a/b;
+			}catch(ArithmeticException e) {
+				return 0;
+			}
+		};
 		
 		System.out.println("Addition of 6 and 5 is "+add.calculate(6,5));
 		System.out.println("Subtraction of 8 from 10 is "+subtract.calculate(10,8));
@@ -68,6 +69,8 @@ public class MathApp {
 		//Using Implicit Lambda Function
 		numberPlayList.forEach((n) -> {System.out.println("Using implicit lambda function, element in the number list : "+n);});
 		
+		Function<Integer, Double> integertoDouble = n -> n.doubleValue();
+		numberPlayList.forEach((n) -> {System.out.println("After conversion, element in the number list : "+integertoDouble.apply(n));});
 	}
 
 }
