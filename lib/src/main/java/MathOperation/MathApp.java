@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 @FunctionalInterface
 interface ICalculator{
@@ -69,8 +70,14 @@ public class MathApp {
 		//Using Implicit Lambda Function
 		numberPlayList.forEach((n) -> {System.out.println("Using implicit lambda function, element in the number list : "+n);});
 		
+		//convert integer into double
 		Function<Integer, Double> integertoDouble = n -> n.doubleValue();
 		numberPlayList.forEach((n) -> {System.out.println("After conversion, element in the number list : "+integertoDouble.apply(n));});
+		
+		//check even number
+		Predicate<Integer> isEven = n -> n>0 && n%2==0;
+		numberPlayList.forEach((n) -> {System.out.println("Element in the number list is even : "+isEven.test(n));});
+		
 	}
 
 }
